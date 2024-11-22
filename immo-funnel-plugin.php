@@ -78,7 +78,7 @@ add_shortcode('immo_image', 'immo_funnel_image_shortcode');
 function immo_funnel_rewrite_dynamic_css() {
     add_rewrite_rule('dynamic-style.css$', 'index.php?immo_dynamic_css=1', 'top');
 }
-add_action('wp_footer', 'immo_funnel_rewrite_dynamic_css');
+add_action('init', 'immo_funnel_rewrite_dynamic_css');
 
 function immo_funnel_query_vars($query_vars) {
     $query_vars[] = 'immo_dynamic_css';
@@ -105,7 +105,7 @@ function immo_funnel_enqueue_scripts()
     wp_enqueue_style('immo-funnel-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
 	wp_enqueue_style('immo-funnel-dynamic-style', home_url('/dynamic-style.css'));
     wp_register_script('immo-funnel-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array('jquery'), null, true);
-    if (is_page('immo_funnel')) {
+    if (is_page(SHORTCODE_EMBEDED_SITE)) {
 		wp_enqueue_script('immo-funnel-script');
 	}
 

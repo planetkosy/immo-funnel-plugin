@@ -5,6 +5,9 @@ if (!defined('ABSPATH')) {
 // Seiten- oder Companyname definieren
 define('SITENAME', 'dein_seitenname');
 
+// Seite auf der der Shortcode eingebunden ist
+define('SHORTCODE_EMBEDED_SITE', 'name_der_Seite');
+
 // Emailadressen und Links des Funnels definieren
 // Absendeadresse des Funnels
 define('SENDER_EMAIL_ADDRESS', 'example@deine-domain.de');

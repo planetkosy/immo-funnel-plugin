@@ -38,6 +38,7 @@ Dieses Plugin bietet einen Klickfunnel für Immobilien-Suchaufträge mit 8 einfa
 2. **Mindestkonfiguration**:
    - Turnstile CAPTCHA `Sitekey` und `Secretkey` müssen zwingend angegeben werden, da das Plugin sonst nicht funktioniert.
    - Angabe des Seiten- oder Firmennamens.
+   - Angabe des Seitennamens auf welcher der Shortcode `[immo_funnel]` eingebettet wird zwingend erforderlich, da das Plugin sonst nicht funktioniert.
    - Angabe von Sender- und Empfänger-E-Mail-Adresse für den Mailversand.
    - Verlinkung zur Datenschutzerklärung.
 3. **SMTP-Mail Plugin**:  

@@ -14,14 +14,12 @@
 
 body {
     font-family: 'Source Sans 3', Arial, sans-serif;
-    /*color: #28374b;*/
 }
 
 .step h2 {
     font-family: 'Source Sans 3', Arial, sans-serif;
     font-size: 40px;
     font-weight: 500;
-    /*color: #1b97df;*/
     margin-top: 20px;
     margin-bottom: 10px;
     text-align: center;
@@ -31,7 +29,6 @@ body {
     font-family: 'Source Sans 3', Arial, sans-serif;
     font-size: 18px;
     font-weight: 600;
-    /*color: #1b97df;*/
     margin-top: 10px;
     margin-bottom: 0px;
     text-align: center;
@@ -39,7 +36,6 @@ body {
 
 .step p {
     font-size: 16px;
-    /*color: #28374b;*/
     text-align: center;
 }
 
@@ -48,10 +44,6 @@ body {
     min-height: 510px;
     margin: 0 auto;
     padding: 0px;
-    /*background-color: #f4f4f4;*/
-    /*border: 0px;*/
-    /*border-radius: 1px;*/
-    /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
     position: relative;
 }
 
@@ -66,7 +58,6 @@ body {
 }
 
 .slider-values {
-    /*color: #f46456;*/
     font-size: 16px;
     margin-top: 7px;
     margin-bottom: 0px;
@@ -79,11 +70,6 @@ body {
     text-align: center;
     font-weight: 600;
 }
-
-/*.slider-container span {
-    color: #f46456;
-
-}*/
 
 .progress-bar-container {
     width: 35%;
@@ -111,7 +97,6 @@ body {
 }
 
 .step-progress.active {
-    /*background-color: #1b97df;*/
     opacity: 0.4;
 }
 
@@ -147,7 +132,6 @@ input[type="range"] {
     position: absolute;
     top: 0;
     left: 1%;
-    /*background-image: url('../icons/back.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -176,7 +160,6 @@ input[type="range"] {
     top: 0;
     left: 99%;
     transform: translate(-100%, -0%);
-    /*background-image: url('../icons/next_active.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -199,7 +182,6 @@ input[type="range"] {
     top: 0;
     left: 99%;
     transform: translate(-100%, -0%);
-    /*background-image: url('../icons/next.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -220,13 +202,11 @@ input[type="range"] {
 
 .next-button:hover:enabled {
     opacity: 0.7;
-    /*background-image: url('../icons/next_hover.png');*/
     background-color: rgba(0, 0, 0, 0.0);
     cursor: pointer;
 }
 
 .submit-button:enabled {
-    /*background-image: url('../icons/send_active.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -245,7 +225,6 @@ input[type="range"] {
 }
 
 .submit-button:disabled {
-    /*background-image: url('../icons/send.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -266,14 +245,12 @@ input[type="range"] {
 
 .submit-button:hover:enabled {
     opacity: 0.7;
-    /*background-image: url('../icons/send_hover.png');*/
     background-color: rgba(0, 0, 0, 0.0);
     transition: opacity 0.5s ease;
     cursor: pointer;
 }
 
 .new-button:enabled {
-    /*background-image: url('../icons/neu_active.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -293,7 +270,6 @@ input[type="range"] {
 
 .new-button:hover:enabled {
     opacity: 0.7;
-    /*background-image: url('../icons/neu_hover.png');*/
     background-color: rgba(0, 0, 0, 0.0);
     transition: opacity 0.5s ease;
     cursor: pointer;
@@ -304,9 +280,7 @@ input[type="range"] {
 }
 
 .noUi-connect {
-    /*background: rgb(27, 151, 223, 0.6);*/
 	opacity: 0.4;
-    z-index: 2;
 }
 
 .noUi-origin {
@@ -314,32 +288,24 @@ input[type="range"] {
 }
 
 .noUi-tooltip {
-    /*background: #28374b;*/
-    /*color: #f4f4f4;*/
     border-radius: 25%;
 }
 
 .noUi-handle {
-    /*background: rgb(244, 100, 86, 0.8);*/
     border-radius: 100%;
-    /*border-color: #1b97df;*/
-    z-index: 1;
 }
 
 .step {
     display: none;
     padding-top: 10px;
     padding-bottom: 10px;
-    /*background-color: #f4f4f4;*/
     margin: 0px 0;
-    /*border-radius: 1px;*/
 }
 
 .step h4 {
     font-family: 'Source Sans 3', Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    /*color: #28374b;*/
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
@@ -368,7 +334,6 @@ input[type="range"] {
 }
 
 .custom-radio span {
-    /*color: #f46456;*/
     margin-top: 5px;
 }
 
@@ -397,7 +362,6 @@ input[type="range"] {
 
 .custom-radio input[type="radio"]:checked+img {
     opacity: 1;
-    /*border: 1px solid #1b97df;*/
 }
 
 .text-group {
@@ -422,11 +386,7 @@ input[type="range"] {
     width: 250px;
     height: 26px;
     font-size: 16px;
-    /*color: #28374b;*/
-    /*border: 1px;*/
     border-style: solid;
-    /*border-color: #28374b;*/
-    /*border-radius: 1px;*/
 }
 
 .custom-text input[type="email"] {
@@ -434,11 +394,7 @@ input[type="range"] {
     width: 250px;
     height: 26px;
     font-size: 16px;
-    /*color: #28374b;*/
-    /*border: 1px;*/
     border-style: solid;
-    /*border-color: #28374b;*/
-    /*border-radius: 1px;*/
 }
 
 .custom-text input[type="tel"] {
@@ -446,11 +402,7 @@ input[type="range"] {
     width: 250px;
     height: 26px;
     font-size: 16px;
-    /*color: #28374b;*/
-    /*border: 1px;*/
     border-style: solid;
-    /*border-color: #28374b;*/
-    /*border-radius: 1px;*/
 }
 
 .custom-summary {
@@ -465,7 +417,6 @@ input[type="range"] {
 
 input::placeholder,
 textarea::placeholder {
-    /*color: #f46456;*/
     font-size: 16px;
     font-style: normal;
 }
@@ -478,7 +429,6 @@ textarea::placeholder {
 }
 
 .checkbox-container label {
-    /*color: #f46456;*/
     margin-top: 6px;
 
 }
@@ -511,10 +461,7 @@ textarea::placeholder {
 .custom-check .custom-checkbox {
     width: 25px;
     height: 25px;
-    /*border: 1px;*/
     border-style: solid;
-    /*border-color: #f46456;*/
-    /*border-radius: 5px;*/
     background-color: white;
     position: relative;
     cursor: pointer;
@@ -522,14 +469,6 @@ textarea::placeholder {
     margin-bottom: 0px;
     background-size: cover;
 }
-
-/*.custom-check input[type="checkbox"]:checked+.custom-checkbox {
-    border-color: #1b97df;
-}*/
-
-/*.custom-check input[type="checkbox"]:checked+.custom-checkbox+label {
-    color: #1b97df;
-}*/
 
 .custom-check input[type="checkbox"]:checked+.custom-checkbox:after {
     content: "";
@@ -540,7 +479,6 @@ textarea::placeholder {
     width: 20px;
     height: 20px;
     transform: translate(-50%, -50%);
-    /*background-image: url('../icons/planetkosy_site_icon.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 3
@@ -590,8 +528,6 @@ textarea::placeholder {
 .energie-radio input[type="radio"]:checked+img {
     opacity: 1;
     border-style: solid;
-    /*border-width: 1px;*/
-    /*border-color: #1b97df;*/
 }
 
 .custom-textarea {
@@ -602,13 +538,9 @@ textarea::placeholder {
 .custom-textarea textarea {
     width: 90%;
     padding: 10px;
-    /*border: 1px;*/
     border-style: solid;
-    /*border-color: #28374b;*/
-    /*border-radius: 1px;*/
     box-sizing: border-box;
     font-size: 16px;
-    /*color: #28374b;*/
     resize: vertical;
     margin: 0 auto;
     display: block;
@@ -669,10 +601,7 @@ textarea::placeholder {
 .datenschutz-check .custom-checkbox {
     width: 25px;
     height: 25px;
-    /*border: 1px;*/
     border-style: solid;
-    /*border-color: #f46456;*/
-    /*border-radius: 5px;*/
     background-color: white;
     position: relative;
     cursor: pointer;
@@ -684,14 +613,9 @@ textarea::placeholder {
 
 .datenschutz-check label {
     flex-grow: 1;
-	/*color: #28374b;*/
     font-size: 14px;
     text-align: left;
 }
-
-/*.datenschutz-check input[type="checkbox"]:checked+.custom-checkbox {
-    border-color: #1b97df;
-}*/
 
 .datenschutz-check input[type="checkbox"]:checked+.custom-checkbox:after {
     content: "";
@@ -702,7 +626,6 @@ textarea::placeholder {
     width: 20px;
     height: 20px;
     transform: translate(-50%, -50%);
-    /*background-image: url('../icons/planetkosy_site_icon.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 3
@@ -719,13 +642,8 @@ textarea::placeholder {
 }
 
 a {
-    /*color: #1b97df;*/
     text-decoration: none;
 }
-
-/*a:visited {
-    color: #f46456;
-}*/
 
 #summary p {
     font-size: 16px;
