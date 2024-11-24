@@ -718,6 +718,22 @@ a {
     z-index: 1000;
 }
 
+.tab-content {
+    display: none;
+	margin-top: 20px;
+}
+.tab-content.active {
+    display: block;
+}
+.nav-tab-wrapper {
+    margin-bottom: 20px;
+}
+.nav-tab {
+    cursor: pointer;
+	background-color: #fff;
+    border-bottom: 1px solid transparent !important;
+}
+
 @media (max-width: 768px) {
     h2 {
         font-size: 36px;

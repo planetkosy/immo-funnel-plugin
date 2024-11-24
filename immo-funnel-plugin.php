@@ -7,6 +7,7 @@
  * Author: planetkosy
  * Author URI: https://planetkosy.de/
  * Github: https://github.com/MartinKosemetzky/immo-funnel-plugin
+ * Tested on WordPress 6.7.1
  * License: MIT
  * License URI: https://opensource.org/licenses/MIT
  */
