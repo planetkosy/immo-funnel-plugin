@@ -44,6 +44,7 @@ body {
     min-height: 510px;
     margin: 0 auto;
     padding: 0px;
+    border-width: 0px;
     position: relative;
 }
 
@@ -299,6 +300,7 @@ input[type="range"] {
     display: none;
     padding-top: 10px;
     padding-bottom: 10px;
+
     margin: 0px 0;
 }
 
@@ -361,7 +363,7 @@ input[type="range"] {
 }
 
 .custom-radio input[type="radio"]:checked+img {
-    opacity: 1;
+    opacity: 1;/
 }
 
 .text-group {
@@ -710,7 +712,7 @@ a {
 .copyright {
     position: absolute;
     bottom: 3px;
-    right: 6px;
+    right: 50px;
     font-size: 10px;
     color: #aaaaaa;
     z-index: 1000;

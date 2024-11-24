@@ -1,6 +1,6 @@
 # Immobilien Suchauftrag Funnel
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Autor:** planetkosy  
 **Beschreibung:** Ein Immobilien-Suchauftrag als Funnel mit 8 Schritten für WordPress.
 
@@ -26,15 +26,15 @@ Dieses Plugin bietet einen Klickfunnel für Immobilien-Suchaufträge mit 8 einfa
 ## Installation
 
 1. Lade das Plugin-Verzeichnis in `/wp-content/plugins/` hoch.
-2. **Nimm die Mindestkonfiguration wie im Abschnitt Konfiguration beschrieben vor**
 2. Aktiviere das Plugin in deinem WordPress-Adminbereich.
+3. **Nimm die Mindestkonfiguration wie im Abschnitt Konfiguration beschrieben vor**
 3. Verwende den Shortcode `[immo_funnel]`, um den Funnel einzubinden.
 
 ---
 
 ## Konfiguration
 
-1. Die Konfiguration des Plugins erfolgt in der `immo-funnel-config.php`.
+1. Die Konfiguration des Plugins kannst du auf der Einstellungsseite im `wp-admin-bereich` vornehmen.
 2. **Mindestkonfiguration**:
    - Turnstile CAPTCHA `Sitekey` und `Secretkey` müssen zwingend angegeben werden, da das Plugin sonst nicht funktioniert.
    - Angabe des Seiten- oder Firmennamens.
@@ -73,13 +73,6 @@ Dieses Plugin bietet einen Klickfunnel für Immobilien-Suchaufträge mit 8 einfa
 Bei Fragen oder Problemen, bitte an martin@planetkosy.de wenden.
 
 ---
-
-## Hinweis zur Entwicklung
-
-Dieses Plugin wurde mit Unterstützung von KI-Tools wie OpenAI ChatGPT entwickelt. Der Code wurde sorgfältig geprüft und manuell angepasst.
-
----
-
 
 ## Unterstützung
 

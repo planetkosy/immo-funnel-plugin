@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Immobilien Such-Funnel
- * Plugin URI: https://github.com/planetkosy/immo-funnel-plugin
- * Description: Click-Funnel zur Immobiliensuche als Wordpress-Plugin.
- * Version: 1.0
+ * Plugin URI: https://github.com/MartinKosemetzky/immo-funnel-plugin
+ * Description: Klick-Funnel zur Immobiliensuche als Wordpress-Plugin.
+ * Version: 1.1
  * Author: planetkosy
  * Author URI: https://planetkosy.de/
- * Github: https://github.com/planetkosy/
+ * Github: https://github.com/MartinKosemetzky/immo-funnel-plugin
  * License: MIT
  * License URI: https://opensource.org/licenses/MIT
  */
@@ -16,6 +16,8 @@ if (!defined('ABSPATH')) {
 
 // Lade die Konfigurationsdatei
 include_once plugin_dir_path(__FILE__) . 'immo-funnel-config.php';
+// Einstellungsseite einbinden
+require_once plugin_dir_path(__FILE__) . 'includes/admin-settings-page.php';
 
 function immo_funnel_start_session()
 {
@@ -74,6 +76,17 @@ add_shortcode('immo_funnel', 'immo_funnel_shortcode');
 }
 add_shortcode('immo_image', 'immo_funnel_image_shortcode');
 */
+
+function immo_funnel_admin_scripts($hook) {
+    if ($hook === 'toplevel_page_immo-funnel-settings') { // Nur für die Einstellungsseite
+        wp_enqueue_style('wp-color-picker');
+        wp_enqueue_script('immo-funnel-color-picker', plugins_url('assets/js/admin-color-picker.js', __FILE__), array('wp-color-picker'), false, true);
+
+        wp_enqueue_media();
+        wp_enqueue_script('immo-funnel-admin-js', plugins_url('assets/js/enqueue_admin.js', __FILE__), array('jquery'), false, true);
+    }
+}
+add_action('admin_enqueue_scripts', 'immo_funnel_admin_scripts');
 
 function immo_funnel_rewrite_dynamic_css() {
     add_rewrite_rule('dynamic-style.css$', 'index.php?immo_dynamic_css=1', 'top');
@@ -137,11 +150,11 @@ function immo_funnel_handle_post_request()
 }
 add_action('init', 'immo_funnel_handle_post_request');
 
-/*function immo_funnel_csp_header()
-{
-    header("Content-Security-Policy: default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com 'unsafe-inline'; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:;");
+function immo_funnel_flush_rewrites() {
+    immo_funnel_rewrite_dynamic_css();
+    flush_rewrite_rules();
 }
-add_action('send_headers', 'immo_funnel_csp_header');*/
+register_activation_hook(__FILE__, 'immo_funnel_flush_rewrites');
 
 // Allgemeine Funktion zum Laden einer E-Mail-Vorlage mit Variablen
 function load_email_template($template_filename, $variables = []) {
@@ -155,3 +168,10 @@ function load_email_template($template_filename, $variables = []) {
     
     return $template_content;
 }
+
+function immo_funnel_add_settings_link($links) {
+    $settings_link = '<a href="' . admin_url('options-general.php?page=immo-funnel-settings') . '">Einstellungen</a>';
+    array_unshift($links, $settings_link);
+    return $links;
+}
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'immo_funnel_add_settings_link');
