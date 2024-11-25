@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
     }
 }
 
-include plugin_dir_path(__FILE__) . 'immo-funnel-config.php'; // Config einbinden
+require_once plugin_dir_path(__FILE__) . 'immo-funnel-config.php'; // Config einbinden
 
 $time_limit = IMMO_FUNNEL_SESSION_TIME;
 

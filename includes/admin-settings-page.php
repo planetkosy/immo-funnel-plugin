@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/*
 // Erfolgs- oder Fehlermeldung nach dem Speichern der Einstellungen
 function immo_funnel_save_settings_message() {
     if (isset($_GET['settings-updated']) && $_GET['settings-updated'] == true) {
@@ -12,7 +13,7 @@ function immo_funnel_save_settings_message() {
         add_settings_error('immo_funnel_options', 'settings_error', 'Beim Speichern der Einstellungen ist ein Fehler aufgetreten.', 'error');
     }
 }
-add_action('admin_init', 'immo_funnel_save_settings_message');
+add_action('admin_init', 'immo_funnel_save_settings_message');*/
 
 // Einstellungsseite registrieren
 function immo_funnel_add_admin_settings_page() {
@@ -33,9 +34,6 @@ function immo_funnel_render_settings_page() {
     ?>
     <div class="wrap">
         <h1>Immo Funnel Einstellungen</h1>
-		<?php
-        settings_errors('immo_funnel_options');
-        ?>
 
         <!-- Tabs -->
         <h2 class="nav-tab-wrapper">
@@ -195,7 +193,7 @@ function immo_funnel_register_settings() {
         'immo_funnel_rate_limit_section'        // ID des Abschnitts
     );
 
-    // Color Eintellungen Abschnitt hinzufügen
+    // Style Eintellungen Abschnitt hinzufügen
     add_settings_section(
         'immo_funnel_style_section',       // ID des Abschnitts
         'Style Einstellungen',          // Titel des Abschnitts
@@ -509,109 +507,109 @@ function immo_funnel_icon_section_callback() {
 
 // Callback-Funktionen für die Eingabefelder
 function immo_funnel_site_name_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['site_name']) ? esc_attr($options['site_name']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['site_name']) ? esc_attr($options_min['site_name']) : '';
     echo '<input type="text" name="immo_funnel_min[site_name]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_embeded_site_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['embeded_site']) ? esc_attr($options['embeded_site']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['embeded_site']) ? esc_attr($options_min['embeded_site']) : '';
     echo '<input type="text" name="immo_funnel_min[embeded_site]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_sender_email_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['sender_email']) ? esc_attr($options['sender_email']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['sender_email']) ? esc_attr($options_min['sender_email']) : '';
     echo '<input type="email" name="immo_funnel_min[sender_email]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_reciver_email_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['reciver_email']) ? esc_attr($options['reciver_email']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['reciver_email']) ? esc_attr($options_min['reciver_email']) : '';
     echo '<input type="email" name="immo_funnel_min[reciver_email]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_privacy_policy_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['privacy_policy']) ? esc_url($options['privacy_policy']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['privacy_policy']) ? esc_url($options_min['privacy_policy']) : '';
     echo '<input type="url" name="immo_funnel_min[privacy_policy]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_turnstile_public_key_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['turnstile_public_key']) ? esc_attr($options['turnstile_public_key']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['turnstile_public_key']) ? esc_attr($options_min['turnstile_public_key']) : '';
     echo '<input type="text" name="immo_funnel_min[turnstile_public_key]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_turnstile_secret_key_field() {
-    $options = get_option('immo_funnel_min');
-    $value = isset($options['turnstile_secret_key']) ? esc_attr($options['turnstile_secret_key']) : '';
+    $options_min = get_option('immo_funnel_min');
+    $value = isset($options_min['turnstile_secret_key']) ? esc_attr($options_min['turnstile_secret_key']) : '';
     echo '<input type="password" name="immo_funnel_min[turnstile_secret_key]" value="' . $value . '" class="regular-text" required>';
 }
 
 function immo_funnel_rate_limit_minute_field() {
-    $options = get_option('immo_funnel_rate_limit');
-    $value = isset($options['rate_limit_minute']) ? esc_attr($options['rate_limit_minute']) : '';
+    $options_rate_limit = get_option('immo_funnel_rate_limit');
+    $value = isset($options_rate_limit['rate_limit_minute']) ? esc_attr($options_rate_limit['rate_limit_minute']) : '';
     echo '<input type="number" name="immo_funnel_rate_limit[rate_limit_minute]" value="' . $value . '" class="medium-text">';
 }
 
 function immo_funnel_rate_limit_hour_field() {
-    $options = get_option('immo_funnel_rate_limit');
-    $value = isset($options['rate_limit_hour']) ? esc_attr($options['rate_limit_hour']) : '';
+    $options_rate_limit = get_option('immo_funnel_rate_limit');
+    $value = isset($options_rate_limit['rate_limit_hour']) ? esc_attr($options_rate_limit['rate_limit_hour']) : '';
     echo '<input type="number" name="immo_funnel_rate_limit[rate_limit_hour]" value="' . $value . '" class="medium-text">';
 }
 
 function immo_funnel_rate_limit_day_field() {
-    $options = get_option('immo_funnel_rate_limit');
-    $value = isset($options['rate_limit_day']) ? esc_attr($options['rate_limit_day']) : '';
+    $options_rate_limit = get_option('immo_funnel_rate_limit');
+    $value = isset($options_rate_limit['rate_limit_day']) ? esc_attr($options_rate_limit['rate_limit_day']) : '';
     echo '<input type="number" name="immo_funnel_rate_limit[rate_limit_day]" value="' . $value . '" class="medium-text">';
 }
 
 function immo_funnel_primary_first_color_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['primary_first_color']) ? esc_attr($options['primary_first_color']) : '#404040';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['primary_first_color']) ? esc_attr($options_style['primary_first_color']) : '#404040';
     echo '<input type="text" class="immo-funnel-color-field" name="immo_funnel_style[primary_first_color]" value="' . $value . '" data-default-color="#404040">';
 }
 
 function immo_funnel_primary_second_color_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['primary_second_color']) ? esc_attr($options['primary_second_color']) : '#f4f4f4';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['primary_second_color']) ? esc_attr($options_style['primary_second_color']) : '#f4f4f4';
     echo '<input type="text" class="immo-funnel-color-field" name="immo_funnel_style[primary_second_color]" value="' . $value . '" data-default-color="#f4f4f4">';
 }
 
 function immo_funnel_secondary_first_color_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['secondary_first_color']) ? esc_attr($options['secondary_first_color']) : '#00A170';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['secondary_first_color']) ? esc_attr($options_style['secondary_first_color']) : '#00A170';
     echo '<input type="text" class="immo-funnel-color-field" name="immo_funnel_style[secondary_first_color]" value="' . $value . '" data-default-color="#00A170">';
 }
 
 function immo_funnel_secondary_second_color_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['secondary_second_color']) ? esc_attr($options['secondary_second_color']) : '#404040';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['secondary_second_color']) ? esc_attr($options_style['secondary_second_color']) : '#404040';
     echo '<input type="text" class="immo-funnel-color-field" name="immo_funnel_style[secondary_second_color]" value="' . $value . '" data-default-color="#476345">';
 }
 
 function immo_funnel_funnel_border_radius_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['funnel_border_radius']) ? intval($options['funnel_border_radius']) : '';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['funnel_border_radius']) ? intval($options_style['funnel_border_radius']) : '';
     echo '<input type="number" name="immo_funnel_style[funnel_border_radius]" value="' . $value . '" class="small-text"> px';
 }
 
 function immo_funnel_input_border_radius_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['input_border_radius']) ? intval($options['input_border_radius']) : '';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['input_border_radius']) ? intval($options_style['input_border_radius']) : '';
     echo '<input type="number" name="immo_funnel_style[input_border_radius]" value="' . $value . '" class="small-text"> px';
 }
 
 function immo_funnel_input_border_width_field() {
-    $options = get_option('immo_funnel_style');
-    $value = isset($options['input_border_width']) ? intval($options['input_border_width']) : '';
+    $options_style = get_option('immo_funnel_style');
+    $value = isset($options_style['input_border_width']) ? intval($options_style['input_border_width']) : '';
     echo '<input type="number" name="immo_funnel_style[input_border_width]" value="' . $value . '" class="small-text"> px';
 }
 
 function immo_funnel_funnel_box_shadow_fields() {
-    $options = get_option('immo_funnel_style');
+    $options_style = get_option('immo_funnel_style');
     
     $fields = [
         'horizontal_offset' => 'Horizontaler Versatz:',
@@ -622,7 +620,7 @@ function immo_funnel_funnel_box_shadow_fields() {
     ];
     
     foreach ($fields as $key => $label) {
-        $value = isset($options['box_shadow'][$key]) ? esc_attr($options['box_shadow'][$key]) : '';
+        $value = isset($options_style['box_shadow'][$key]) ? esc_attr($options_style['box_shadow'][$key]) : '';
         if($key === 'color') {
             echo '
             <label for="box_shadow_' . $key . '">' . $label . '</label>
@@ -636,8 +634,8 @@ function immo_funnel_funnel_box_shadow_fields() {
 }
 
 function immo_funnel_icon_field($field_id, $label) {
-    $options = get_option('immo_funnel_icon');
-    $value = isset($options[$field_id]) ? esc_url($options[$field_id]) : '';
+    $options_icon = get_option('immo_funnel_icon');
+    $value = isset($options_icon[$field_id]) ? esc_url($options_icon[$field_id]) : '';
     echo '
         <label for="' . $field_id . '">' . $label . '</label>
         <input type="text" id="' . $field_id . '" name="immo_funnel_icon[' . $field_id . ']" value="' . $value . '" class="regular-text">

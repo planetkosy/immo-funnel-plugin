@@ -1,6 +1,9 @@
 <?php
 header("Content-Type: text/css");
-include plugin_dir_path(__FILE__) . 'immo-funnel-config.php'; // Config einbinden
+require_once plugin_dir_path(__FILE__) . 'immo-funnel-config.php'; // Config einbinden
+global $immo_funnel_icons;
+global $immo_funnel_colors;
+global $immo_funnel_styles;
 ?>
 
 .back-button {

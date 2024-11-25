@@ -16,9 +16,9 @@ if (!defined('ABSPATH')) {
 }
 
 // Lade die Konfigurationsdatei
-include_once plugin_dir_path(__FILE__) . 'immo-funnel-config.php';
+include_once plugin_dir_path(__FILE__) . 'includes/immo-funnel-config.php';
 // Einstellungsseite einbinden
-require_once plugin_dir_path(__FILE__) . 'includes/admin-settings-page.php';
+include_once plugin_dir_path(__FILE__) . 'includes/admin-settings-page.php';
 
 function immo_funnel_start_session()
 {
@@ -103,7 +103,7 @@ add_filter('query_vars', 'immo_funnel_query_vars');
 function immo_funnel_output_dynamic_css() {
     if (get_query_var('immo_dynamic_css')) {
         header('Content-Type: text/css');
-        include plugin_dir_path(__FILE__) . 'dynamic-style.php';
+        include plugin_dir_path(__FILE__) . 'includes/dynamic-style.php';
         exit;
     }
 }

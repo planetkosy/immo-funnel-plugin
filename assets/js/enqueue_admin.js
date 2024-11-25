@@ -29,12 +29,18 @@ document.addEventListener('DOMContentLoaded', function () {
     tabs.forEach(tab => {
         tab.addEventListener('click', function (e) {
             e.preventDefault();
-            tabs.forEach(t => t.classList.remove('nav-tab-active'));
-            contents.forEach(c => c.classList.remove('active'));
 
-            this.classList.add('nav-tab-active');
-            const target = document.querySelector(this.getAttribute('href'));
-            target.classList.add('active');
+            tabs.forEach(t => t.classList.remove('nav-tab-active'));
+            tab.classList.add('nav-tab-active');
+
+            contents.forEach(content => content.style.display = 'none');
+            document.querySelector(tab.getAttribute('href')).style.display = 'block';
         });
     });
+
+    // Standardmäßig den ersten Tab anzeigen
+    if (tabs.length > 0) {
+        tabs[0].classList.add('nav-tab-active');
+        contents[0].style.display = 'block';
+    }
 });
