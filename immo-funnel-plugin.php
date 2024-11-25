@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Immobilien Such-Funnel
- * Plugin URI: https://github.com/MartinKosemetzky/immo-funnel-plugin
- * Description: Klick-Funnel zur Immobiliensuche als Wordpress-Plugin.
+ * Plugin URI: https://github.com/planetkosy/immo-funnel-plugin
+ * Description: Klick-Funnel zur Generierung von Immobiliensucheaufträgen.
  * Version: 1.1
  * Author: planetkosy
  * Author URI: https://planetkosy.de/
- * Github: https://github.com/MartinKosemetzky/immo-funnel-plugin
+ * Github: https://github.com/planetkosy
  * Tested on WordPress 6.7.1
  * License: MIT
  * License URI: https://opensource.org/licenses/MIT
@@ -17,6 +17,8 @@ if (!defined('ABSPATH')) {
 
 // Lade die Konfigurationsdatei
 include_once plugin_dir_path(__FILE__) . 'includes/immo-funnel-config.php';
+// Lade die admin-ajax.php
+include_once plugin_dir_path(__FILE__) . 'includes/admin-ajax.php';
 // Einstellungsseite einbinden
 include_once plugin_dir_path(__FILE__) . 'includes/admin-settings-page.php';
 
@@ -85,6 +87,9 @@ function immo_funnel_admin_scripts($hook) {
 
         wp_enqueue_media();
         wp_enqueue_script('immo-funnel-admin-js', plugins_url('assets/js/enqueue_admin.js', __FILE__), array('jquery'), false, true);
+		
+		//wp_enqueue_code_editor(['type' => 'text/html']);
+    	//wp_enqueue_script('wp-codemirror');
     }
 }
 add_action('admin_enqueue_scripts', 'immo_funnel_admin_scripts');

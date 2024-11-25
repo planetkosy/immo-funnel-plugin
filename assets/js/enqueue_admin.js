@@ -1,3 +1,4 @@
+// Funktion zur separaten Iconauswahl je Button aus der Mediathek
 jQuery(document).ready(function ($) {
     $('.immo-funnel-upload-button').on('click', function (e) {
         e.preventDefault();
@@ -22,6 +23,7 @@ jQuery(document).ready(function ($) {
     });
 });
 
+// Funktion zur Reiteranzeige auf der Einstellungsseite
 document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.nav-tab');
     const contents = document.querySelectorAll('.tab-content');
@@ -43,4 +45,18 @@ document.addEventListener('DOMContentLoaded', function () {
         tabs[0].classList.add('nav-tab-active');
         contents[0].style.display = 'block';
     }
+});
+
+
+// Funktion zum speichern der Emailvorlage auf der Einstellungsseite
+jQuery(document).ready(function ($) {
+    $('#save-email-template').on('click', function () {
+        const content = $('#email-template-editor').val();
+        $.post(ajaxurl, {
+            action: 'save_email_template',
+            content: content,
+        }, function (response) {
+            alert(response.success ? 'Template gespeichert!' : 'Fehler beim Speichern');
+        });
+    });
 });

@@ -41,6 +41,7 @@ function immo_funnel_render_settings_page() {
             <a href="#tab-rate-limit" class="nav-tab">Rate-Limit-Konfiguration</a>
             <a href="#tab-style" class="nav-tab">Style-Konfiguration</a>
             <a href="#tab-icon" class="nav-tab">Icon-Konfiguration</a>
+			<a href="#tab-email" class="nav-tab">Email-Konfiguration</a>
         </h2>
 
         <!-- Inhalte der Tabs -->
@@ -83,6 +84,16 @@ function immo_funnel_render_settings_page() {
                 ?>
             </form>
         </div>
+		
+		<div id="tab-email" class="tab-content" style="display: none;">
+            <form method="post" action="options.php">
+                <?php
+                settings_fields('immo_funnel_email_settings');
+                do_settings_sections('immo-funnel-email-settings');
+                //submit_button();
+                ?>
+            </form>
+        </div>
     </div>
     <?php
 }
@@ -95,6 +106,7 @@ function immo_funnel_register_settings() {
     register_setting('immo_funnel_rate_limit_settings', 'immo_funnel_rate_limit');
     register_setting('immo_funnel_style_settings', 'immo_funnel_style');
     register_setting('immo_funnel_icon_settings', 'immo_funnel_icon');
+	register_setting('immo_funnel_email_settings', 'immo_funnel_email');
 
     // Minimal Eintellungen Abschnitt hinzufügen
     add_settings_section(
@@ -482,6 +494,24 @@ function immo_funnel_register_settings() {
         'immo-funnel-icon-settings',
         'immo_funnel_icon_section'
     );
+	
+	// Mail Eintellungen Abschnitt hinzufügen
+    add_settings_section(
+        'immo_funnel_email_section',       // ID des Abschnitts
+        'Email Einstellungen',          // Titel des Abschnitts
+        'immo_funnel_email_section_callback',   // Callback für Beschreibung
+        'immo-funnel-email-settings'            // Slug der Einstellungsseite
+    );
+
+    // Felder hinzufügen
+    add_settings_field(
+        'confirmation_email',                      // ID des Feldes
+        'Bestätigungsmail',         		// Label
+        'immo_funnel_confirmation_email_field',    // Callback für HTML
+        'immo-funnel-email-settings',           // Slug der Einstellungsseite
+        'immo_funnel_email_section'        // ID des Abschnitts
+    );
+
 }
 add_action('admin_init', 'immo_funnel_register_settings');
 
@@ -503,6 +533,11 @@ function immo_funnel_style_section_callback() {
 // Beschreibung des Abschnitts Icon Einstellungen
 function immo_funnel_icon_section_callback() {
     echo '<p>Hier kannst du die im Funnel verwendeten Icons festlegen.</p>';
+}
+
+// Beschreibung des Abschnitts Icon Einstellungen
+function immo_funnel_email_section_callback() {
+    echo '<p>Hier kannst du die vom Funnel versendete Bestätigungsmail anpassen.</p>';
 }
 
 // Callback-Funktionen für die Eingabefelder
@@ -593,19 +628,19 @@ function immo_funnel_secondary_second_color_field() {
 function immo_funnel_funnel_border_radius_field() {
     $options_style = get_option('immo_funnel_style');
     $value = isset($options_style['funnel_border_radius']) ? intval($options_style['funnel_border_radius']) : '';
-    echo '<input type="number" name="immo_funnel_style[funnel_border_radius]" value="' . $value . '" class="small-text"> px';
+    echo '<input type="number" name="immo_funnel_style[funnel_border_radius]" value="' . $value . '" class="small-text"> px -> Gib 00 ein um spitze Funnelecken anzeigen zu lassen.';
 }
 
 function immo_funnel_input_border_radius_field() {
     $options_style = get_option('immo_funnel_style');
     $value = isset($options_style['input_border_radius']) ? intval($options_style['input_border_radius']) : '';
-    echo '<input type="number" name="immo_funnel_style[input_border_radius]" value="' . $value . '" class="small-text"> px';
+    echo '<input type="number" name="immo_funnel_style[input_border_radius]" value="' . $value . '" class="small-text"> px -> Gib 00 ein um spitze Eingabefeldecken anzeigen zu lassen.';
 }
 
 function immo_funnel_input_border_width_field() {
     $options_style = get_option('immo_funnel_style');
     $value = isset($options_style['input_border_width']) ? intval($options_style['input_border_width']) : '';
-    echo '<input type="number" name="immo_funnel_style[input_border_width]" value="' . $value . '" class="small-text"> px';
+    echo '<input type="number" name="immo_funnel_style[input_border_width]" value="' . $value . '" class="small-text"> px -> Gib 00 ein um keinen Rahmen anzeigen zu lassen.';
 }
 
 function immo_funnel_funnel_box_shadow_fields() {
@@ -657,4 +692,15 @@ function immo_funnel_icon_field($field_id, $label) {
         <button type="button" class="button immo-funnel-upload-button" data-field="' . $field_id . '">Icon auswählen</button>
         <img src="' . $preview_url . '" id="' . $field_id . '_preview" style="max-width: 100px; margin-top: 10px;">
     ';
+}
+
+function immo_funnel_confirmation_email_field() {
+    $template_file = plugin_dir_path(__DIR__) . 'templates/confirmation-email-template.php';
+    $template_content = file_exists($template_file) ? file_get_contents($template_file) : '';
+
+    ?>
+    <h2>E-Mail-Template bearbeiten</h2>
+    <textarea id="email-template-editor" name="email_template" rows="25" style="width: 100%;"><?php echo esc_textarea($template_content); ?></textarea>
+    <button type="button" id="save-email-template" class="button button-primary" style="margin-top: 10px;">Template speichern</button>
+    <?php
 }
