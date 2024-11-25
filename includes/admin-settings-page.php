@@ -275,7 +275,7 @@ function immo_funnel_register_settings() {
 
     add_settings_field(
         'icon_back',
-        'Icon Zurück Button',
+        'Zurück Button',
         function () {
             immo_funnel_icon_field('icon_back', '');
         },
@@ -384,20 +384,20 @@ function immo_funnel_register_settings() {
     );
 
     add_settings_field(
-        'icon_eigennutzung',
+        'icon_eigen',
         'Icon für Eigennutzung',
         function () {
-            immo_funnel_icon_field('icon_eigennutzung', '');
+            immo_funnel_icon_field('icon_eigen', '');
         },
         'immo-funnel-icon-settings',
         'immo_funnel_icon_section'
     );
 
     add_settings_field(
-        'icon_vermietung',
+        'icon_rent',
         'Icon für Vermietung',
         function () {
-            immo_funnel_icon_field('icon_vermietung', '');
+            immo_funnel_icon_field('icon_rent', '');
         },
         'immo-funnel-icon-settings',
         'immo_funnel_icon_section'
@@ -475,7 +475,7 @@ function immo_funnel_register_settings() {
 
     add_settings_field(
         'icon_ci_picture',
-        'Icon Bild für E-Mail',
+        'Bild für E-Mail',
         function () {
             immo_funnel_icon_field('icon_ci_picture', '');
         },
@@ -636,10 +636,25 @@ function immo_funnel_funnel_box_shadow_fields() {
 function immo_funnel_icon_field($field_id, $label) {
     $options_icon = get_option('immo_funnel_icon');
     $value = isset($options_icon[$field_id]) ? esc_url($options_icon[$field_id]) : '';
+
+	// Entferne das "icon_"-Präfix aus $field_id
+	$actual_file_name = str_replace('icon_', '', $field_id);
+    
+	// Ordnerpfad zu den Icons
+    $icons_dir = plugin_dir_path(__DIR__) . 'assets/icons/';
+	
+	// Suche die Datei mit dem passenden Muster
+	$default_icon_path = glob($icons_dir . $actual_file_name . '.*');
+    //$default_icon_path = glob($icons_dir . 'icon-' . $field_id . '.*'); // Sucht nach `icon-{field_id}.jpg`, `icon-{field_id}.png`, etc.
+    $default_icon_url = !empty($default_icon_path) ? plugins_url('assets/icons/' . basename($default_icon_path[0]), __DIR__) : '';
+
+    // Vorschau-URL: Benutzerdefiniertes Icon oder Standardicon
+    $preview_url = !empty($value) ? $value : $default_icon_url;
+
     echo '
         <label for="' . $field_id . '">' . $label . '</label>
         <input type="text" id="' . $field_id . '" name="immo_funnel_icon[' . $field_id . ']" value="' . $value . '" class="regular-text">
         <button type="button" class="button immo-funnel-upload-button" data-field="' . $field_id . '">Icon auswählen</button>
-        <img src="' . $value . '" id="' . $field_id . '_preview" style="max-width: 100px; margin-top: 10px;">
+        <img src="' . $preview_url . '" id="' . $field_id . '_preview" style="max-width: 100px; margin-top: 10px;">
     ';
 }
