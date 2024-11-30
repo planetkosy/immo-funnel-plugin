@@ -4,17 +4,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-/*
-// Erfolgs- oder Fehlermeldung nach dem Speichern der Einstellungen
-function immo_funnel_save_settings_message() {
-    if (isset($_GET['settings-updated']) && $_GET['settings-updated'] == true) {
-        add_settings_error('immo_funnel_options', 'settings_updated', 'Einstellungen wurden erfolgreich gespeichert.', 'updated');
-    } elseif (isset($_GET['settings-updated']) && $_GET['settings-updated'] == false) {
-        add_settings_error('immo_funnel_options', 'settings_error', 'Beim Speichern der Einstellungen ist ein Fehler aufgetreten.', 'error');
-    }
-}
-add_action('admin_init', 'immo_funnel_save_settings_message');*/
-
 // Einstellungsseite registrieren
 function immo_funnel_add_admin_settings_page() {
     add_menu_page(
@@ -34,6 +23,9 @@ function immo_funnel_render_settings_page() {
     ?>
     <div class="wrap">
         <h1>Immo Funnel Einstellungen</h1>
+        <?php
+			settings_errors();
+		?>
 
         <!-- Tabs -->
         <h2 class="nav-tab-wrapper">
@@ -90,7 +82,7 @@ function immo_funnel_render_settings_page() {
                 <?php
                 settings_fields('immo_funnel_email_settings');
                 do_settings_sections('immo-funnel-email-settings');
-                //submit_button();
+                submit_button();
                 ?>
             </form>
         </div>
@@ -505,6 +497,14 @@ function immo_funnel_register_settings() {
 
     // Felder hinzufügen
     add_settings_field(
+        'confirmation_email_subject',                      // ID des Feldes
+        'Betreff Bestätigungsmail',         		// Label
+        'immo_funnel_confirmation_email_subject_field',    // Callback für HTML
+        'immo-funnel-email-settings',           // Slug der Einstellungsseite
+        'immo_funnel_email_section'        // ID des Abschnitts
+    );
+
+    add_settings_field(
         'confirmation_email',                      // ID des Feldes
         'Bestätigungsmail',         		// Label
         'immo_funnel_confirmation_email_field',    // Callback für HTML
@@ -694,13 +694,32 @@ function immo_funnel_icon_field($field_id, $label) {
     ';
 }
 
+function immo_funnel_confirmation_email_subject_field() {
+    $options_email = get_option('immo_funnel_email');
+    $value = isset($options_email['confirmation_email_subject']) ? esc_attr($options_email['confirmation_email_subject']) : '';
+    echo '<input type="text" name="immo_funnel_email[confirmation_email_subject]" value="' . $value . '" class="regular-text">';
+}
+
 function immo_funnel_confirmation_email_field() {
     $template_file = plugin_dir_path(__DIR__) . 'templates/confirmation-email-template.php';
     $template_content = file_exists($template_file) ? file_get_contents($template_file) : '';
 
     ?>
     <h2>E-Mail-Template bearbeiten</h2>
-    <textarea id="email-template-editor" name="email_template" rows="25" style="width: 100%;"><?php echo esc_textarea($template_content); ?></textarea>
-    <button type="button" id="save-email-template" class="button button-primary" style="margin-top: 10px;">Template speichern</button>
+    <?php
+    wp_editor(
+        $template_content, // Der geladene Inhalt der Template-Datei
+        'email_template_editor', // ID des Editors
+        [
+            'textarea_name' => 'email_template', // Name des Formularfelds
+            'media_buttons' => false, // Keine Buttons für Medien-Uploads
+            'tinymce' => false,
+            'quicktags' => true, // Quicktags (HTML-Buttons) aktivieren
+        ]
+    );
+    ?>
+    <button type="button" id="save-email-template" class="button button-primary" style="margin-top: 10px; margin-left: 0px;">Template speichern</button>
+	<button type="button" id="preview-email-template" class="button" style="margin-top: 10px; margin-left: 10px;">Vorschau anzeigen</button>
+    <button type="button" id="send-preview-email-template" class="button" style="margin-top: 10px; margin-left: 10px;">Testmail versenden</button>
     <?php
 }

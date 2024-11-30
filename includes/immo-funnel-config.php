@@ -8,6 +8,7 @@ $options_min = get_option('immo_funnel_min', []);
 $options_rate_limit = get_option('immo_funnel_rate_limit', []);
 $options_style = get_option('immo_funnel_style', []);
 $options_icon = get_option('immo_funnel_icon', []);
+$options_email = get_option('immo_funnel_email', []);
 
 // Seiten- oder Companyname definieren
 define('SITENAME', !empty($options_min['site_name']) ? $options_min['site_name'] : '');
@@ -36,6 +37,9 @@ define('IMMO_FUNNEL_SESSION_TIME', '3600');
 define('IMMO_FUNNEL_RATELIMIT_MINUTE', !empty($options_rate_limit['rate_limit_minute']) ? $options_rate_limit['rate_limit_minute'] : '2');
 define('IMMO_FUNNEL_RATELIMIT_HOUR', !empty($options_rate_limit['rate_limit_hour']) ? $options_rate_limit['rate_limit_hour'] : '10');
 define('IMMO_FUNNEL_RATELIMIT_DAY', !empty($options_rate_limit['rate_limit_day']) ? $options_rate_limit['rate_limit_day'] : '30');
+
+// Email Konfiguration
+define('CONFIRMATION_EMAIL_SUBJECT', !empty($options_email['confirmation_email_subject']) ? $options_email['confirmation_email_subject'] : 'Bitte Betreff hinzufügen');
 
 // Die verwendeten Icons im Funnel definieren
 global $immo_funnel_icons;

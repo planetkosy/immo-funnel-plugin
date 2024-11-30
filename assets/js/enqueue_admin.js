@@ -51,12 +51,43 @@ document.addEventListener('DOMContentLoaded', function () {
 // Funktion zum speichern der Emailvorlage auf der Einstellungsseite
 jQuery(document).ready(function ($) {
     $('#save-email-template').on('click', function () {
-        const content = $('#email-template-editor').val();
+        // Den Inhalt des Editors abrufen
+        const content = $('#email_template_editor').val();
+        
+        // AJAX-Anfrage senden
+        $.post(ajax_object.ajax_url, {
+            action: 'save_email_template', // Aktion für den AJAX-Hook
+            content: content, // Editor-Inhalt
+            save_template_nonce: ajax_object.save_template_nonce // Nonce für CSRF-Schutz
+        })
+        .done(function (response) {
+            // Erfolgsmeldung anzeigen
+            alert(response.success ? 'Template gespeichert!' : 'Fehler beim Speichern: ' + (response.data || 'Unbekannter Fehler'));
+        })
+        .fail(function () {
+            // Fehler bei der Verbindung
+            alert('Fehler bei der Verbindung zum Server.');
+        });
+    });
+});
+
+// Funktion um Email Vorschau anzuzeigen
+document.getElementById('preview-email-template').addEventListener('click', function() {
+    window.open('/confirmation-email-preview', '_blank');
+});
+
+// Funktion zum senden der Emailvorlage auf der Einstellungsseite
+jQuery(document).ready(function ($) {
+    $('#send-preview-email-template').on('click', function () {
         $.post(ajaxurl, {
-            action: 'save_email_template',
-            content: content,
+            action: 'send_preview_email_template',
+			send_template_nonce: ajax_object.send_template_nonce // Nonce für CSRF-Schutz
         }, function (response) {
-            alert(response.success ? 'Template gespeichert!' : 'Fehler beim Speichern');
+            if (response.status === 'success') {
+                alert('Test-Email gesendet!');
+            } else {
+                alert('Fehler beim Senden: ' + (response.message || 'Unbekannter Fehler.'));
+            }
         });
     });
 });

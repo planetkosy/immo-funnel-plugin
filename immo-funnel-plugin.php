@@ -3,7 +3,7 @@
  * Plugin Name: Immobilien Such-Funnel
  * Plugin URI: https://github.com/planetkosy/immo-funnel-plugin
  * Description: Klick-Funnel zur Generierung von Immobiliensucheaufträgen.
- * Version: 1.1
+ * Version: 1.2
  * Author: planetkosy
  * Author URI: https://planetkosy.de/
  * Github: https://github.com/planetkosy
@@ -86,10 +86,20 @@ function immo_funnel_admin_scripts($hook) {
         wp_enqueue_script('immo-funnel-color-picker', plugins_url('assets/js/admin-color-picker.js', __FILE__), array('wp-color-picker'), false, true);
 
         wp_enqueue_media();
-        wp_enqueue_script('immo-funnel-admin-js', plugins_url('assets/js/enqueue_admin.js', __FILE__), array('jquery'), false, true);
+        wp_enqueue_script(
+            'immo-funnel-admin-js',
+            plugins_url('assets/js/enqueue_admin.js', __FILE__),
+            array('jquery'),
+            filemtime(plugin_dir_path(__FILE__) . 'assets/js/enqueue_admin.js'),
+            true
+        );
 		
-		//wp_enqueue_code_editor(['type' => 'text/html']);
-    	//wp_enqueue_script('wp-codemirror');
+		// Nonce an das Script übergeben
+        wp_localize_script('immo-funnel-admin-js', 'ajax_object', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'save_template_nonce' => wp_create_nonce('save_email_template_nonce'),
+            'send_template_nonce' => wp_create_nonce('send_email_template_nonce'),
+        ));
     }
 }
 add_action('admin_enqueue_scripts', 'immo_funnel_admin_scripts');
@@ -113,6 +123,33 @@ function immo_funnel_output_dynamic_css() {
     }
 }
 add_action('template_redirect', 'immo_funnel_output_dynamic_css');
+
+// Rewrite-Rule für E-Mail-Vorschau hinzufügen
+function immo_funnel_email_preview_rewrite() {
+    add_rewrite_rule(
+        'confirmation-email-preview$', // URL-Muster
+        'index.php?confirmation_email_preview=1', // Ziel, das verarbeitet wird
+        'top'
+    );
+}
+add_action('init', 'immo_funnel_email_preview_rewrite');
+
+// Query-Variable registrieren
+function immo_funnel_register_email_preview_query_var($vars) {
+    $vars[] = 'confirmation_email_preview';
+    return $vars;
+}
+add_filter('query_vars', 'immo_funnel_register_email_preview_query_var');
+
+// Verarbeitung der Query-Variable
+function immo_funnel_email_preview_redirect() {
+    if (get_query_var('confirmation_email_preview') == 1) {
+        require plugin_dir_path(__FILE__) . 'templates/confirmation-email-template-preview.php';
+        exit;
+    }
+}
+add_action('template_redirect', 'immo_funnel_email_preview_redirect');
+
 
 function immo_funnel_enqueue_scripts()
 {
@@ -158,6 +195,7 @@ add_action('init', 'immo_funnel_handle_post_request');
 
 function immo_funnel_flush_rewrites() {
     immo_funnel_rewrite_dynamic_css();
+	immo_funnel_email_preview_rewrite();
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'immo_funnel_flush_rewrites');

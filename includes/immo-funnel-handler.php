@@ -286,7 +286,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$headers
 	);
 
-    $confirmation_subject = "Nachricht von planetkosy";
+    $confirmation_subject = CONFIRMATION_EMAIL_SUBJECT;
     
 	// Template für Bestätigungs-E-Mail laden
 	$confirmation_email_template = load_email_template('confirmation-email-template.php', [

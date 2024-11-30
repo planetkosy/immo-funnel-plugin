@@ -1,6 +1,6 @@
 # Immobilien Suchauftrag Funnel
 
-**Version:** 1.1  
+**Version:** 1.2
 **Autor:** planetkosy  
 **Beschreibung:** Ein Immobilien-Suchauftrag als Funnel mit 8 Schritten für WordPress.
 
@@ -8,7 +8,7 @@
 
 ## Beschreibung
 
-Dieses Plugin bietet einen Klickfunnel für Immobilien-Suchaufträge mit 8 einfachen Schritten, von der Auswahl der Nutzungsart bis hin zur Angabe spezifischer Suchregionen und Kontaktdaten. Mit Versand einer Bestätigungsmail an den Auftragserfasser sowie einer Zusammenfassungsmail an den Funnelbetreiber.
+Dieses Plugin bietet einen Klickfunnel für Immobilien-Suchaufträge mit 8 einfachen Schritten, von der Auswahl der Nutzungsart bis hin zur Angabe spezifischer Suchregionen und Kontaktdaten. Mit Versand einer Bestätigungsmail an den Auftragserfasser sowie einer Zusammenfassungsmail an den Funnelbetreiber. Zur einfachen Konfiguration und Anpassung des Plugins, steht die ein Einstellungsbereich im `wp-admin-bereich` zur Verfügung. 
 
 ---
 
@@ -43,13 +43,13 @@ Dieses Plugin bietet einen Klickfunnel für Immobilien-Suchaufträge mit 8 einfa
    - Verlinkung zur Datenschutzerklärung.
 3. **SMTP-Mail Plugin**:  
    Ein korrekt konfiguriertes SMTP-Mail-Plugin ist erforderlich, um den Mailversand zu ermöglichen.
-4. **Bestätigung-E-Mail-Vorlage**:  
-   Die E-Mail-Vorlage `/templates/confirmation-email-template.php` sollte an eure Bedürfnisse angepasst werden.
+4. **Bestätigungs-E-Mail-Vorlage**:  
+   Der Betreff und die Vorlage der Bestätigungsemail kann/sollte auf der Einstellungsseite im `wp-admin-bereich` individuell an eure Bedürfnisse angepsst werden.
 5. **Zusätzliche Konfigurationsmöglichkeiten:**
-   - Ratelimits, Session-Zeit, Farben, Icons und einige Styles können individuell angepasst werden.
+   - Ratelimits, Farben, Icons und einige Styles können individuell angepasst werden.
    - Zur Anpassung der Icons an deine defienierten Funnel-Farben, bearbeite oder ersetze die entsprechenden `/assets/icons/*.png`-Dateien.
 6. **Zusammenfassungs-E-Mail-Vorlage:**
-   Die E-Mail-Vorlage `/templates/admin-email-template.php` kann im Bedarfsfall angepasst werden.
+   Die E-Mail-Vorlage `/templates/admin-email-template.php` kann im Bedarfsfall angepasst werden. Muss aber eigentlich nicht sein.
 7. **Anpassungen des Funnel-Inhalts:**
    Anpassungen am Inhalt des Funnels können im Bedarfsfall in der Datei `/template/immo-funnel-template.php` vorgenommen werden.
 
